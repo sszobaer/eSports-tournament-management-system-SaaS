@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="BLL/BLL.csproj" />
   <Project Path="DAL/DAL.csproj" />
-  <Project Path="EsportsTournamentManagement/EsportsTournamentManagement.csproj" />
+  <Project Path="EsportsTournamentManagement/AppLayerAPI.csproj" />
 </Solution>
