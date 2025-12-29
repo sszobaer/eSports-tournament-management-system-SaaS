@@ -1,6 +1,0 @@
-@AppLayerAPI_HostAddress = http://localhost:5004
-
-GET {{AppLayerAPI_HostAddress}}/TournamentController/
-Accept: application/json
-
-###
