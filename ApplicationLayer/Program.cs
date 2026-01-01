@@ -1,3 +1,5 @@
+using DAL.Entities.Context;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+builder.Services.AddDbContext<UMSContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DbConn")));
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

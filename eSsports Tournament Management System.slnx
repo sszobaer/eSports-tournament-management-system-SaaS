@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="AppplicationLayer/AppplicationLayer.csproj" />
-  <Project Path="BLL/BLL.csproj" />
-  <Project Path="DAL/DAL.csproj" />
-</Solution>
