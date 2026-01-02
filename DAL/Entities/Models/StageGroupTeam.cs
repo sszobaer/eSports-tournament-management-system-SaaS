@@ -21,7 +21,7 @@ namespace DAL.Entities.Models
         public int Rank { get; set; }
 
         [Required]
-        public bool IsQualified { get; set; }
+        public bool IsQualified { get; set; } 
     }
 
 }

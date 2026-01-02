@@ -7,7 +7,7 @@ namespace DAL.Entities.Models
 {
     public class Role : BaseEntity
     {
-        [Required, MaxLength(50)]
+        [Required, MaxLength(25)]
         public string Name { get; set; }
 
         public ICollection<UserRole> UserRoles { get; set; }

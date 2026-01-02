@@ -12,7 +12,7 @@ namespace DAL.Entities.Context
             : base(options) { }
 
        
-        //AUTH & AUTHORIZATION
+        //AUTH & AUTHORIZATION - Zobaer
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -24,7 +24,7 @@ namespace DAL.Entities.Context
         public DbSet<Game> Games { get; set; }
         public DbSet<ScoringRule> ScoringRules { get; set; }
 
-        //TOURNAMENT CORE
+        //TOURNAMENT CORE - Zobaer
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<TournamentStage> TournamentStages { get; set; }
         public DbSet<StageGroup> StageGroups { get; set; }
@@ -34,12 +34,12 @@ namespace DAL.Entities.Context
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
 
-        //MATCH & POINT SYSTEM
+        //MATCH & POINT SYSTEM 
         public DbSet<Match> Matches { get; set; }
         public DbSet<MatchTeamResult> MatchTeamResults { get; set; }
         public DbSet<MatchPlayerStat> MatchPlayerStats { get; set; }
 
-        //QUALIFICATION / BRACKET
+        //QUALIFICATION / BRACKET - Zobaer
         public DbSet<QualificationMap> QualificationMaps { get; set; }
 
         //MODEL CONFIGURATION
