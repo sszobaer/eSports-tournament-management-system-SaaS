@@ -156,3 +156,11 @@ This project is currently being developed in collaboration with **[Sabbir Hasan]
 ## License
 
 MIT License © 2026 S. S. Zobaer Ahmed
+
+---
+
+### ERD
+
+<img width="1954" height="4336" alt="ERD" src="https://github.com/user-attachments/assets/e13e2247-895c-4890-9f88-dd87670def25" />
+
+---
