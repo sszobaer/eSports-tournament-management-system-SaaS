@@ -24,9 +24,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.Game", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -60,9 +62,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.Match", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -81,6 +85,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("StageGroupId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("StageGroupId1")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
@@ -88,6 +95,8 @@ namespace DAL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StageGroupId1");
 
                     b.HasIndex("StageGroupId", "MatchNumber")
                         .IsUnique();
@@ -97,9 +106,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.MatchPlayerStat", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -116,15 +127,23 @@ namespace DAL.Migrations
                     b.Property<Guid>("MatchTeamResultId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("MatchTeamResultId1")
+                        .HasColumnType("integer");
+
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("PlayerId1")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("MatchTeamResultId1");
+
+                    b.HasIndex("PlayerId1");
 
                     b.HasIndex("MatchTeamResultId", "PlayerId")
                         .IsUnique();
@@ -134,9 +153,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.MatchTeamResult", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -150,6 +171,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("MatchId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("MatchId1")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Placement")
                         .HasColumnType("integer");
 
@@ -159,6 +183,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("TeamId1")
+                        .HasColumnType("integer");
+
                     b.Property<int>("TotalPoints")
                         .HasColumnType("integer");
 
@@ -167,7 +194,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("MatchId1");
+
+                    b.HasIndex("TeamId1");
 
                     b.HasIndex("MatchId", "TeamId")
                         .IsUnique();
@@ -177,9 +206,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.Organization", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -215,9 +246,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.OrganizationUser", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -228,8 +261,14 @@ namespace DAL.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("OrganizationId1")
+                        .HasColumnType("integer");
+
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("RoleId1")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -237,11 +276,16 @@ namespace DAL.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("UserId1")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("OrganizationId1");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("RoleId1");
+
+                    b.HasIndex("UserId1");
 
                     b.HasIndex("OrganizationId", "UserId")
                         .IsUnique();
@@ -251,9 +295,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.Player", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -274,21 +320,26 @@ namespace DAL.Migrations
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("TeamId1")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("TeamId1");
 
                     b.ToTable("Players");
                 });
 
             modelBuilder.Entity("DAL.Entities.Models.QualificationMap", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -308,6 +359,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("TeamId1")
+                        .HasColumnType("integer");
+
                     b.Property<Guid>("ToStageGroupId")
                         .HasColumnType("uuid");
 
@@ -316,7 +370,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("TeamId1");
 
                     b.HasIndex("FromStageGroupId", "TeamId")
                         .IsUnique();
@@ -326,9 +380,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.Role", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -338,8 +394,8 @@ namespace DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(25)
+                        .HasColumnType("character varying(25)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -351,26 +407,28 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.ScoringRule", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("KillPointValue")
+                    b.Property<int?>("KillPointValue")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Placement")
+                    b.Property<int?>("Placement")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PlacementPoints")
+                    b.Property<int?>("PlacementPoints")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -386,9 +444,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.StageGroup", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -410,10 +470,15 @@ namespace DAL.Migrations
                     b.Property<Guid>("StageId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("StageId1")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StageId1");
 
                     b.HasIndex("StageId", "GroupName")
                         .IsUnique();
@@ -423,9 +488,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.StageGroupTeam", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -442,8 +509,14 @@ namespace DAL.Migrations
                     b.Property<Guid>("StageGroupId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("StageGroupId1")
+                        .HasColumnType("integer");
+
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("TeamId1")
+                        .HasColumnType("integer");
 
                     b.Property<int>("TotalPoints")
                         .HasColumnType("integer");
@@ -453,7 +526,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("StageGroupId1");
+
+                    b.HasIndex("TeamId1");
 
                     b.HasIndex("StageGroupId", "TeamId")
                         .IsUnique();
@@ -463,15 +538,20 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.Team", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("GameId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("GameId1")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -489,29 +569,37 @@ namespace DAL.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("OrganizationId1")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameId1");
 
-                    b.HasIndex("OrganizationId");
+                    b.HasIndex("OrganizationId1");
 
                     b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("DAL.Entities.Models.Tournament", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("GameId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("GameId1")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -524,6 +612,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("OrganizationId1")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
@@ -532,18 +623,20 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameId1");
 
-                    b.HasIndex("OrganizationId");
+                    b.HasIndex("OrganizationId1");
 
                     b.ToTable("Tournaments");
                 });
 
             modelBuilder.Entity("DAL.Entities.Models.TournamentStage", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -568,10 +661,15 @@ namespace DAL.Migrations
                     b.Property<Guid>("TournamentId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("TournamentId1")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TournamentId1");
 
                     b.HasIndex("TournamentId", "StageOrder")
                         .IsUnique();
@@ -581,9 +679,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -621,11 +721,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Models.UserRole", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -638,7 +738,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.StageGroup", "StageGroup")
                         .WithMany("Matches")
-                        .HasForeignKey("StageGroupId")
+                        .HasForeignKey("StageGroupId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -649,13 +749,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.MatchTeamResult", "MatchTeamResult")
                         .WithMany("PlayerStats")
-                        .HasForeignKey("MatchTeamResultId")
+                        .HasForeignKey("MatchTeamResultId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Player", "Player")
                         .WithMany()
-                        .HasForeignKey("PlayerId")
+                        .HasForeignKey("PlayerId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -668,13 +768,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Match", "Match")
                         .WithMany("TeamResults")
-                        .HasForeignKey("MatchId")
+                        .HasForeignKey("MatchId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("TeamId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -687,19 +787,19 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Organization", "Organization")
                         .WithMany("Users")
-                        .HasForeignKey("OrganizationId")
+                        .HasForeignKey("OrganizationId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RoleId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.User", "User")
                         .WithMany("Organizations")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -714,7 +814,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("TeamId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -725,7 +825,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("TeamId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -747,7 +847,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.TournamentStage", "Stage")
                         .WithMany("Groups")
-                        .HasForeignKey("StageId")
+                        .HasForeignKey("StageId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -758,13 +858,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.StageGroup", "StageGroup")
                         .WithMany("Teams")
-                        .HasForeignKey("StageGroupId")
+                        .HasForeignKey("StageGroupId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("TeamId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -777,13 +877,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId")
+                        .HasForeignKey("GameId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Organization", "Organization")
                         .WithMany()
-                        .HasForeignKey("OrganizationId")
+                        .HasForeignKey("OrganizationId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -796,13 +896,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId")
+                        .HasForeignKey("GameId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Organization", "Organization")
                         .WithMany()
-                        .HasForeignKey("OrganizationId")
+                        .HasForeignKey("OrganizationId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -815,7 +915,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Tournament", "Tournament")
                         .WithMany("Stages")
-                        .HasForeignKey("TournamentId")
+                        .HasForeignKey("TournamentId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
