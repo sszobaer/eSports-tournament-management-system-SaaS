@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -8,9 +9,9 @@ namespace DAL.Entities.Models
 {
     public class StageGroup : BaseEntity
     {
-        [Required]
-        public Guid StageId { get; set; }
-        public TournamentStage Stage { get; set; }
+        [ForeignKey("Stage")]
+        public int StageId { get; set; }
+        public virtual TournamentStage Stage { get; set; }
 
         [Required, MaxLength(10)]
         public string GroupName { get; set; }   // A, B, C

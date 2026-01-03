@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DAL.Entities.Models
@@ -8,12 +9,12 @@ namespace DAL.Entities.Models
     public class MatchTeamResult : BaseEntity
     {
         [Required]
-        public Guid MatchId { get; set; }
-        public Match Match { get; set; }
+        public int MatchId { get; set; }
+        public virtual Match Match { get; set; }
 
-        [Required]
-        public Guid TeamId { get; set; }
-        public Team Team { get; set; }
+        [ForeignKey("Team")]
+        public int TeamId { get; set; }
+        public virtual Team Team { get; set; }
 
         [Required]
         public int Placement { get; set; }

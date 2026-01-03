@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DAL.Entities.Models
@@ -8,14 +9,14 @@ namespace DAL.Entities.Models
     public class QualificationMap : BaseEntity
     {
         [Required]
-        public Guid FromStageGroupId { get; set; }
+        public int FromStageGroupId { get; set; }
 
         [Required]
-        public Guid ToStageGroupId { get; set; }
+        public int ToStageGroupId { get; set; }
 
-        [Required]
-        public Guid TeamId { get; set; }
-        public Team Team { get; set; }
+        [ForeignKey("Team")]
+        public int TeamId { get; set; }
+        public virtual Team Team { get; set; }
 
         [Required]
         public int SeedNumber { get; set; }

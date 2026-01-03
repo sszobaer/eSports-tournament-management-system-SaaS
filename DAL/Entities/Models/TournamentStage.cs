@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DAL.Entities.Models
 {
     public class TournamentStage : BaseEntity
     {
-        [Required]
-        public Guid TournamentId { get; set; }
-        public Tournament Tournament { get; set; }
+        [ForeignKey("Tournament")]
+        public int TournamentId { get; set; }
+        public virtual Tournament Tournament { get; set; }
 
         [Required, MaxLength(100)]
         public string StageName { get; set; }

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(UMSContext))]
-    [Migration("20260103171909_initial_db")]
+    [Migration("20260103175541_initial_db")]
     partial class initial_db
     {
         /// <inheritdoc />
@@ -85,10 +85,7 @@ namespace DAL.Migrations
                     b.Property<int>("MatchNumber")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("StageGroupId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("StageGroupId1")
+                    b.Property<int>("StageGroupId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Status")
@@ -98,8 +95,6 @@ namespace DAL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StageGroupId1");
 
                     b.HasIndex("StageGroupId", "MatchNumber")
                         .IsUnique();
@@ -127,16 +122,10 @@ namespace DAL.Migrations
                     b.Property<int>("Kills")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("MatchTeamResultId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("MatchTeamResultId1")
+                    b.Property<int>("MatchTeamResultId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("PlayerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("PlayerId1")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -144,9 +133,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MatchTeamResultId1");
-
-                    b.HasIndex("PlayerId1");
+                    b.HasIndex("PlayerId");
 
                     b.HasIndex("MatchTeamResultId", "PlayerId")
                         .IsUnique();
@@ -171,10 +158,7 @@ namespace DAL.Migrations
                     b.Property<int>("KillPoints")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("MatchId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("MatchId1")
+                    b.Property<int>("MatchId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Placement")
@@ -183,10 +167,7 @@ namespace DAL.Migrations
                     b.Property<int>("PlacementPoints")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("TeamId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("TeamId1")
+                    b.Property<int>("TeamId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TotalPoints")
@@ -197,9 +178,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MatchId1");
-
-                    b.HasIndex("TeamId1");
+                    b.HasIndex("TeamId");
 
                     b.HasIndex("MatchId", "TeamId")
                         .IsUnique();
@@ -261,34 +240,23 @@ namespace DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("OrganizationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("OrganizationId1")
+                    b.Property<int>("OrganizationId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("RoleId1")
+                    b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("UserId1")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizationId1");
+                    b.HasIndex("RoleId");
 
-                    b.HasIndex("RoleId1");
-
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.HasIndex("OrganizationId", "UserId")
                         .IsUnique();
@@ -320,10 +288,7 @@ namespace DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<Guid>("TeamId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("TeamId1")
+                    b.Property<int>("TeamId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -331,7 +296,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId1");
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Players");
                 });
@@ -347,8 +312,8 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("FromStageGroupId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("FromStageGroupId")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -359,21 +324,18 @@ namespace DAL.Migrations
                     b.Property<int>("SeedNumber")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("TeamId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("TeamId1")
+                    b.Property<int>("TeamId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("ToStageGroupId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("ToStageGroupId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId1");
+                    b.HasIndex("TeamId");
 
                     b.HasIndex("FromStageGroupId", "TeamId")
                         .IsUnique();
@@ -470,18 +432,13 @@ namespace DAL.Migrations
                     b.Property<int>("QualifyCount")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("StageId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("StageId1")
+                    b.Property<int>("StageId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StageId1");
 
                     b.HasIndex("StageId", "GroupName")
                         .IsUnique();
@@ -509,16 +466,10 @@ namespace DAL.Migrations
                     b.Property<int>("Rank")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("StageGroupId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("StageGroupId1")
+                    b.Property<int>("StageGroupId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("TeamId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("TeamId1")
+                    b.Property<int>("TeamId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TotalPoints")
@@ -529,9 +480,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StageGroupId1");
-
-                    b.HasIndex("TeamId1");
+                    b.HasIndex("TeamId");
 
                     b.HasIndex("StageGroupId", "TeamId")
                         .IsUnique();
@@ -550,10 +499,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("GameId1")
+                    b.Property<int>("GameId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
@@ -569,10 +515,7 @@ namespace DAL.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
-                    b.Property<Guid>("OrganizationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("OrganizationId1")
+                    b.Property<int>("OrganizationId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -580,9 +523,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId1");
+                    b.HasIndex("GameId");
 
-                    b.HasIndex("OrganizationId1");
+                    b.HasIndex("OrganizationId");
 
                     b.ToTable("Teams");
                 });
@@ -598,10 +541,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("GameId1")
+                    b.Property<int>("GameId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
@@ -612,10 +552,7 @@ namespace DAL.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<Guid>("OrganizationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("OrganizationId1")
+                    b.Property<int>("OrganizationId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Status")
@@ -626,9 +563,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId1");
+                    b.HasIndex("GameId");
 
-                    b.HasIndex("OrganizationId1");
+                    b.HasIndex("OrganizationId");
 
                     b.ToTable("Tournaments");
                 });
@@ -661,18 +598,13 @@ namespace DAL.Migrations
                     b.Property<int>("StageType")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("TournamentId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("TournamentId1")
+                    b.Property<int>("TournamentId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TournamentId1");
 
                     b.HasIndex("TournamentId", "StageOrder")
                         .IsUnique();
@@ -741,7 +673,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.StageGroup", "StageGroup")
                         .WithMany("Matches")
-                        .HasForeignKey("StageGroupId1")
+                        .HasForeignKey("StageGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -752,13 +684,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.MatchTeamResult", "MatchTeamResult")
                         .WithMany("PlayerStats")
-                        .HasForeignKey("MatchTeamResultId1")
+                        .HasForeignKey("MatchTeamResultId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Player", "Player")
                         .WithMany()
-                        .HasForeignKey("PlayerId1")
+                        .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -771,13 +703,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Match", "Match")
                         .WithMany("TeamResults")
-                        .HasForeignKey("MatchId1")
+                        .HasForeignKey("MatchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId1")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -790,19 +722,19 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Organization", "Organization")
                         .WithMany("Users")
-                        .HasForeignKey("OrganizationId1")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId1")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.User", "User")
                         .WithMany("Organizations")
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -817,7 +749,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId1")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -828,7 +760,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId1")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -850,7 +782,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.TournamentStage", "Stage")
                         .WithMany("Groups")
-                        .HasForeignKey("StageId1")
+                        .HasForeignKey("StageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -861,13 +793,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.StageGroup", "StageGroup")
                         .WithMany("Teams")
-                        .HasForeignKey("StageGroupId1")
+                        .HasForeignKey("StageGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId1")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -880,13 +812,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId1")
+                        .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Organization", "Organization")
                         .WithMany()
-                        .HasForeignKey("OrganizationId1")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -899,13 +831,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId1")
+                        .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Models.Organization", "Organization")
                         .WithMany()
-                        .HasForeignKey("OrganizationId1")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -918,7 +850,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Entities.Models.Tournament", "Tournament")
                         .WithMany("Stages")
-                        .HasForeignKey("TournamentId1")
+                        .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

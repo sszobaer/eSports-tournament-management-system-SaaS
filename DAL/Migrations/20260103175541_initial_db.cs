@@ -116,10 +116,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrganizationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OrganizationId1 = table.Column<int>(type: "integer", nullable: false),
-                    GameId = table.Column<Guid>(type: "uuid", nullable: false),
-                    GameId1 = table.Column<int>(type: "integer", nullable: false),
+                    OrganizationId = table.Column<int>(type: "integer", nullable: false),
+                    GameId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     LogoUrl = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -130,14 +128,14 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teams_Games_GameId1",
-                        column: x => x.GameId1,
+                        name: "FK_Teams_Games_GameId",
+                        column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Teams_Organizations_OrganizationId1",
-                        column: x => x.OrganizationId1,
+                        name: "FK_Teams_Organizations_OrganizationId",
+                        column: x => x.OrganizationId,
                         principalTable: "Organizations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -149,10 +147,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    GameId = table.Column<Guid>(type: "uuid", nullable: false),
-                    GameId1 = table.Column<int>(type: "integer", nullable: false),
-                    OrganizationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OrganizationId1 = table.Column<int>(type: "integer", nullable: false),
+                    GameId = table.Column<int>(type: "integer", nullable: false),
+                    OrganizationId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -163,14 +159,14 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Tournaments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tournaments_Games_GameId1",
-                        column: x => x.GameId1,
+                        name: "FK_Tournaments_Games_GameId",
+                        column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tournaments_Organizations_OrganizationId1",
-                        column: x => x.OrganizationId1,
+                        name: "FK_Tournaments_Organizations_OrganizationId",
+                        column: x => x.OrganizationId,
                         principalTable: "Organizations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -182,12 +178,9 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrganizationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OrganizationId1 = table.Column<int>(type: "integer", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId1 = table.Column<int>(type: "integer", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RoleId1 = table.Column<int>(type: "integer", nullable: false),
+                    OrganizationId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    RoleId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
@@ -196,20 +189,20 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_OrganizationUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrganizationUsers_Organizations_OrganizationId1",
-                        column: x => x.OrganizationId1,
+                        name: "FK_OrganizationUsers_Organizations_OrganizationId",
+                        column: x => x.OrganizationId,
                         principalTable: "Organizations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrganizationUsers_Roles_RoleId1",
-                        column: x => x.RoleId1,
+                        name: "FK_OrganizationUsers_Roles_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrganizationUsers_Users_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_OrganizationUsers_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -245,8 +238,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TeamId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TeamId1 = table.Column<int>(type: "integer", nullable: false),
+                    TeamId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     InGameName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -257,8 +249,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Players_Teams_TeamId1",
-                        column: x => x.TeamId1,
+                        name: "FK_Players_Teams_TeamId",
+                        column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -270,10 +262,9 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FromStageGroupId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ToStageGroupId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TeamId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TeamId1 = table.Column<int>(type: "integer", nullable: false),
+                    FromStageGroupId = table.Column<int>(type: "integer", nullable: false),
+                    ToStageGroupId = table.Column<int>(type: "integer", nullable: false),
+                    TeamId = table.Column<int>(type: "integer", nullable: false),
                     SeedNumber = table.Column<int>(type: "integer", nullable: false),
                     QualifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -284,8 +275,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_QualificationMaps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_QualificationMaps_Teams_TeamId1",
-                        column: x => x.TeamId1,
+                        name: "FK_QualificationMaps_Teams_TeamId",
+                        column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -297,8 +288,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TournamentId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TournamentId1 = table.Column<int>(type: "integer", nullable: false),
+                    TournamentId = table.Column<int>(type: "integer", nullable: false),
                     StageName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     StageOrder = table.Column<int>(type: "integer", nullable: false),
                     StageType = table.Column<int>(type: "integer", nullable: false),
@@ -311,8 +301,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_TournamentStages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TournamentStages_Tournaments_TournamentId1",
-                        column: x => x.TournamentId1,
+                        name: "FK_TournamentStages_Tournaments_TournamentId",
+                        column: x => x.TournamentId,
                         principalTable: "Tournaments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -324,8 +314,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StageId = table.Column<Guid>(type: "uuid", nullable: false),
-                    StageId1 = table.Column<int>(type: "integer", nullable: false),
+                    StageId = table.Column<int>(type: "integer", nullable: false),
                     GroupName = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     MaxTeams = table.Column<int>(type: "integer", nullable: false),
                     QualifyCount = table.Column<int>(type: "integer", nullable: false),
@@ -337,8 +326,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_StageGroups", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StageGroups_TournamentStages_StageId1",
-                        column: x => x.StageId1,
+                        name: "FK_StageGroups_TournamentStages_StageId",
+                        column: x => x.StageId,
                         principalTable: "TournamentStages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -350,8 +339,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StageGroupId = table.Column<Guid>(type: "uuid", nullable: false),
-                    StageGroupId1 = table.Column<int>(type: "integer", nullable: false),
+                    StageGroupId = table.Column<int>(type: "integer", nullable: false),
                     MatchNumber = table.Column<int>(type: "integer", nullable: false),
                     MapName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
@@ -363,8 +351,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Matches", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Matches_StageGroups_StageGroupId1",
-                        column: x => x.StageGroupId1,
+                        name: "FK_Matches_StageGroups_StageGroupId",
+                        column: x => x.StageGroupId,
                         principalTable: "StageGroups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -376,10 +364,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StageGroupId = table.Column<Guid>(type: "uuid", nullable: false),
-                    StageGroupId1 = table.Column<int>(type: "integer", nullable: false),
-                    TeamId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TeamId1 = table.Column<int>(type: "integer", nullable: false),
+                    StageGroupId = table.Column<int>(type: "integer", nullable: false),
+                    TeamId = table.Column<int>(type: "integer", nullable: false),
                     TotalPoints = table.Column<int>(type: "integer", nullable: false),
                     Rank = table.Column<int>(type: "integer", nullable: false),
                     IsQualified = table.Column<bool>(type: "boolean", nullable: false),
@@ -391,14 +377,14 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_StageGroupTeams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StageGroupTeams_StageGroups_StageGroupId1",
-                        column: x => x.StageGroupId1,
+                        name: "FK_StageGroupTeams_StageGroups_StageGroupId",
+                        column: x => x.StageGroupId,
                         principalTable: "StageGroups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StageGroupTeams_Teams_TeamId1",
-                        column: x => x.TeamId1,
+                        name: "FK_StageGroupTeams_Teams_TeamId",
+                        column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -410,10 +396,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    MatchId = table.Column<Guid>(type: "uuid", nullable: false),
-                    MatchId1 = table.Column<int>(type: "integer", nullable: false),
-                    TeamId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TeamId1 = table.Column<int>(type: "integer", nullable: false),
+                    MatchId = table.Column<int>(type: "integer", nullable: false),
+                    TeamId = table.Column<int>(type: "integer", nullable: false),
                     Placement = table.Column<int>(type: "integer", nullable: false),
                     PlacementPoints = table.Column<int>(type: "integer", nullable: false),
                     KillPoints = table.Column<int>(type: "integer", nullable: false),
@@ -426,14 +410,14 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_MatchTeamResults", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MatchTeamResults_Matches_MatchId1",
-                        column: x => x.MatchId1,
+                        name: "FK_MatchTeamResults_Matches_MatchId",
+                        column: x => x.MatchId,
                         principalTable: "Matches",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MatchTeamResults_Teams_TeamId1",
-                        column: x => x.TeamId1,
+                        name: "FK_MatchTeamResults_Teams_TeamId",
+                        column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -445,10 +429,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    MatchTeamResultId = table.Column<Guid>(type: "uuid", nullable: false),
-                    MatchTeamResultId1 = table.Column<int>(type: "integer", nullable: false),
-                    PlayerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PlayerId1 = table.Column<int>(type: "integer", nullable: false),
+                    MatchTeamResultId = table.Column<int>(type: "integer", nullable: false),
+                    PlayerId = table.Column<int>(type: "integer", nullable: false),
                     Kills = table.Column<int>(type: "integer", nullable: false),
                     KillPoints = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -459,14 +441,14 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_MatchPlayerStats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MatchPlayerStats_MatchTeamResults_MatchTeamResultId1",
-                        column: x => x.MatchTeamResultId1,
+                        name: "FK_MatchPlayerStats_MatchTeamResults_MatchTeamResultId",
+                        column: x => x.MatchTeamResultId,
                         principalTable: "MatchTeamResults",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MatchPlayerStats_Players_PlayerId1",
-                        column: x => x.PlayerId1,
+                        name: "FK_MatchPlayerStats_Players_PlayerId",
+                        column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -485,25 +467,15 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Matches_StageGroupId1",
-                table: "Matches",
-                column: "StageGroupId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MatchPlayerStats_MatchTeamResultId_PlayerId",
                 table: "MatchPlayerStats",
                 columns: new[] { "MatchTeamResultId", "PlayerId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_MatchPlayerStats_MatchTeamResultId1",
+                name: "IX_MatchPlayerStats_PlayerId",
                 table: "MatchPlayerStats",
-                column: "MatchTeamResultId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MatchPlayerStats_PlayerId1",
-                table: "MatchPlayerStats",
-                column: "PlayerId1");
+                column: "PlayerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MatchTeamResults_MatchId_TeamId",
@@ -512,14 +484,9 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_MatchTeamResults_MatchId1",
+                name: "IX_MatchTeamResults_TeamId",
                 table: "MatchTeamResults",
-                column: "MatchId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MatchTeamResults_TeamId1",
-                table: "MatchTeamResults",
-                column: "TeamId1");
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrganizationUsers_OrganizationId_UserId",
@@ -528,24 +495,19 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationUsers_OrganizationId1",
+                name: "IX_OrganizationUsers_RoleId",
                 table: "OrganizationUsers",
-                column: "OrganizationId1");
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationUsers_RoleId1",
+                name: "IX_OrganizationUsers_UserId",
                 table: "OrganizationUsers",
-                column: "RoleId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationUsers_UserId1",
-                table: "OrganizationUsers",
-                column: "UserId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_TeamId1",
+                name: "IX_Players_TeamId",
                 table: "Players",
-                column: "TeamId1");
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_QualificationMaps_FromStageGroupId_TeamId",
@@ -554,9 +516,9 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_QualificationMaps_TeamId1",
+                name: "IX_QualificationMaps_TeamId",
                 table: "QualificationMaps",
-                column: "TeamId1");
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScoringRules_GameId_Placement",
@@ -571,56 +533,41 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_StageGroups_StageId1",
-                table: "StageGroups",
-                column: "StageId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_StageGroupTeams_StageGroupId_TeamId",
                 table: "StageGroupTeams",
                 columns: new[] { "StageGroupId", "TeamId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_StageGroupTeams_StageGroupId1",
+                name: "IX_StageGroupTeams_TeamId",
                 table: "StageGroupTeams",
-                column: "StageGroupId1");
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StageGroupTeams_TeamId1",
-                table: "StageGroupTeams",
-                column: "TeamId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teams_GameId1",
+                name: "IX_Teams_GameId",
                 table: "Teams",
-                column: "GameId1");
+                column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_OrganizationId1",
+                name: "IX_Teams_OrganizationId",
                 table: "Teams",
-                column: "OrganizationId1");
+                column: "OrganizationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tournaments_GameId1",
+                name: "IX_Tournaments_GameId",
                 table: "Tournaments",
-                column: "GameId1");
+                column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tournaments_OrganizationId1",
+                name: "IX_Tournaments_OrganizationId",
                 table: "Tournaments",
-                column: "OrganizationId1");
+                column: "OrganizationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TournamentStages_TournamentId_StageOrder",
                 table: "TournamentStages",
                 columns: new[] { "TournamentId", "StageOrder" },
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TournamentStages_TournamentId1",
-                table: "TournamentStages",
-                column: "TournamentId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
