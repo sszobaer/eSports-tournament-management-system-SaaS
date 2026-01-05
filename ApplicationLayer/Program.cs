@@ -1,4 +1,8 @@
+using BLL.Services;
+
+using DAL;
 using DAL.Entities.Context;
+using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,11 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+//services ->BLL
+builder.Services.AddScoped<GameService>();
 
-var app = builder.Build();
+//repo ->DAL
+builder.Services.AddScoped<GameRepo>();
+
+
+//DataAccessFactory
+builder.Services.AddScoped<DataAccessFactory>();
+
 builder.Services.AddDbContext<UMSContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConn")));
 
+
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
