@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BLL.Helper
 {
-    public class MapperHelper
+    public class MapperConfig
     {
         public static Mapper GetMapper()
         {

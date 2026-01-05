@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    internal class RoleRepo
+    public class RoleRepo
         : BaseRepo<Role, int>, IRole
     {
         public RoleRepo(UMSContext context) : base(context) { }

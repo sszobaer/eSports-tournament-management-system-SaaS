@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    internal class BaseRepo<TEntity, TKey> : IBase<TEntity, TKey, bool>
+    public class BaseRepo<TEntity, TKey> : IBase<TEntity, TKey, bool>
         where TEntity : class
     {
         protected readonly UMSContext _context;
@@ -52,7 +52,17 @@ namespace DAL.Repositories
         {
             var currentEntity = await Get(id);
             if (currentEntity == null) return false;
-            _context.Entry(currentEntity).CurrentValues.SetValues(entity);
+            
+            foreach(var property in typeof(TEntity).GetProperties())
+            {
+                if (property.Name.Equals("Id")) continue;
+                var newValue= property.GetValue(entity);
+                property.SetValue(currentEntity, newValue);
+            }
+            if (currentEntity is BaseEntity baseEntity)
+            {
+                baseEntity.UpdatedAt = DateTime.UtcNow;
+            }
             return await _context.SaveChangesAsync() > 0;
         }
     }
