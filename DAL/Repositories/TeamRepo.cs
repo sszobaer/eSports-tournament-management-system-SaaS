@@ -6,12 +6,13 @@ using System.Text;
 
 namespace DAL.Repositories
 {
-    public class GameRepo : BaseRepo<Game, int>
+    public class TeamRepo : BaseRepo<Team,int>
     {
-        public GameRepo(UMSContext context) : base(context)
+        UMSContext context;
+        public TeamRepo(UMSContext context) : base(context)
         {
 
         }
-       
+
     }
 }

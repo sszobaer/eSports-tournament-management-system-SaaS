@@ -25,5 +25,10 @@ namespace DAL
             return new GameRepo(db);
 
         }
+
+        public IBase<Team, int, bool> TeamData()
+        {
+            return new TeamRepo(db);
+        }
     }
 }
