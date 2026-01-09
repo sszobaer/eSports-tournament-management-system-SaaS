@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Entities.Context
 {
-    public class UMSContext : DbContext
+    public class ETMSContext : DbContext
     {
-        public UMSContext(DbContextOptions<UMSContext> options)
+        public ETMSContext(DbContextOptions<ETMSContext> options)
             : base(options) { }
 
        

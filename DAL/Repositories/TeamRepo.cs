@@ -8,8 +8,8 @@ namespace DAL.Repositories
 {
     public class TeamRepo : BaseRepo<Team,int>
     {
-        UMSContext context;
-        public TeamRepo(UMSContext context) : base(context)
+        ETMSContext context;
+        public TeamRepo(ETMSContext context) : base(context)
         {
 
         }

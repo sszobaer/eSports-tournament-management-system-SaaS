@@ -9,8 +9,15 @@ namespace DAL.Repositories
     public class RoleRepo
         : BaseRepo<Role, int>, IRole
     {
-        public RoleRepo(UMSContext context) : base(context) { }
+        public RoleRepo(ETMSContext context) : base(context) { }
 
+        public override async Task<bool> Create(Role entity)
+        {
+            if (await _context.Roles.AnyAsync(r => r.Name == entity.Name))
+                return false;
+
+            return await base.Create(entity);
+        }
         public async Task<Role> GetByName(string roleName)
         {
             var data = await _context.Roles
