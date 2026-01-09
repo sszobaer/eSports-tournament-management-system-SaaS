@@ -8,7 +8,7 @@ namespace DAL.Repositories
 {
     public class GameRepo : BaseRepo<Game, int>
     {
-        public GameRepo(UMSContext context) : base(context)
+        public GameRepo(ETMSContext context) : base(context)
         {
 
         }

@@ -13,8 +13,8 @@ namespace DAL.Repositories
     public class BaseRepo<TEntity, TKey> : IBase<TEntity, TKey, bool>
         where TEntity : class
     {
-        protected readonly UMSContext _context;
-        public BaseRepo(UMSContext context)
+        protected readonly ETMSContext _context;
+        public BaseRepo(ETMSContext context)
         {
             _context = context;
         }
