@@ -10,8 +10,8 @@ namespace DAL
 {
     public class DataAccessFactory
     {
-        UMSContext db;
-        public DataAccessFactory(UMSContext db)
+        ETMSContext db;
+        public DataAccessFactory(ETMSContext db)
         {
             this.db = db;
         }
@@ -19,13 +19,11 @@ namespace DAL
         {
             return new RoleRepo(db);
         }
-
         public IBase <Game,int,bool> GameData()
         {
             return new GameRepo(db);
 
         }
-
         public IBase<Team, int, bool> TeamData()
         {
             return new TeamRepo(db);

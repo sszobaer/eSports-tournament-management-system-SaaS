@@ -1,22 +1,38 @@
 using BLL.Services;
-
 using DAL;
 using DAL.Entities.Context;
 using DAL.Repositories;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+Env.Load();
 
+//Console.WriteLine("DB_PASSWORD = " + Environment.GetEnvironmentVariable("DB_PASSWORD"));
+//Console.WriteLine("DB_PORT = [" + Environment.GetEnvironmentVariable("DB_PORT") + "]");
+
+// Build connection string from env
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var dbUser = Environment.GetEnvironmentVariable("DB_USERNAME");
+var dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD");
+
+var connectionString =
+    $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPass}";
+
+// Controllers & OpenAPI
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-//services ->BLL
+
+// BLL services
 builder.Services.AddScoped<GameService>();
 builder.Services.AddScoped<TeamService>();
 builder.Services.AddScoped<PlayerService>();
+builder.Services.AddScoped<RoleService>();
 
-//repo ->DAL
+// DAL repositories
 builder.Services.AddScoped<GameRepo>();
 builder.Services.AddScoped<TeamRepo>();
 builder.Services.AddScoped<PlayerRepo>();
@@ -25,23 +41,19 @@ builder.Services.AddScoped<PlayerRepo>();
 //DataAccessFactory
 builder.Services.AddScoped<DataAccessFactory>();
 
-builder.Services.AddDbContext<UMSContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DbConn")));
-
-
+// DbContext (CORRECT)
+builder.Services.AddDbContext<ETMSContext>(options =>
+    options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
