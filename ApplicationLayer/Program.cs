@@ -14,10 +14,12 @@ builder.Services.AddOpenApi();
 //services ->BLL
 builder.Services.AddScoped<GameService>();
 builder.Services.AddScoped<TeamService>();
+builder.Services.AddScoped<PlayerService>();
 
 //repo ->DAL
 builder.Services.AddScoped<GameRepo>();
 builder.Services.AddScoped<TeamRepo>();
+builder.Services.AddScoped<PlayerRepo>();
 
 
 //DataAccessFactory

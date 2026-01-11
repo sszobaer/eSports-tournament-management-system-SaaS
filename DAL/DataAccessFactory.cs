@@ -30,5 +30,10 @@ namespace DAL
         {
             return new TeamRepo(db);
         }
+        public IPlayer PlayerData()
+        {
+            return new PlayerRepo(db);
+        }
+      
     }
 }
