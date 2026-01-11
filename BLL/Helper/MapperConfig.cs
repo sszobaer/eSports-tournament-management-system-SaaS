@@ -15,6 +15,7 @@ namespace BLL.Helper
             {
                 cfg.CreateMap<Game, GameDTO>().ReverseMap();
                 cfg.CreateMap<Team, TeamDTO>().ReverseMap();
+                cfg.CreateMap<Player, PlayerDTO>().ReverseMap();
                 cfg.CreateMap<Role, RoleDTO>().ReverseMap();
             });
             return new Mapper(config);
