@@ -29,11 +29,16 @@ builder.Services.AddOpenApi();
 // BLL services
 builder.Services.AddScoped<GameService>();
 builder.Services.AddScoped<TeamService>();
+builder.Services.AddScoped<PlayerService>();
 builder.Services.AddScoped<RoleService>();
 
 // DAL repositories
 builder.Services.AddScoped<GameRepo>();
 builder.Services.AddScoped<TeamRepo>();
+builder.Services.AddScoped<PlayerRepo>();
+
+
+//DataAccessFactory
 builder.Services.AddScoped<DataAccessFactory>();
 
 // DbContext (CORRECT)
