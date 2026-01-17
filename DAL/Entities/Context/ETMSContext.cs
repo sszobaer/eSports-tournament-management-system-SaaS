@@ -47,9 +47,6 @@ namespace DAL.Entities.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            /* =========================
-               USER ↔ ROLE (M:N)
-               ========================= */
             modelBuilder.Entity<UserRole>()
                 .HasKey(ur => new { ur.UserId, ur.RoleId });
 
@@ -63,16 +60,10 @@ namespace DAL.Entities.Context
                 .WithMany(r => r.UserRoles)
                 .HasForeignKey(ur => ur.RoleId);
 
-            /* =========================
-               ORGANIZATION ↔ USER
-               ========================= */
             modelBuilder.Entity<OrganizationUser>()
                 .HasIndex(ou => new { ou.OrganizationId, ou.UserId })
                 .IsUnique();
 
-            /* =========================
-               GAME RULE CONSTRAINTS
-               ========================= */
             modelBuilder.Entity<Game>()
                 .HasIndex(g => g.GameCode)
                 .IsUnique();
@@ -81,9 +72,6 @@ namespace DAL.Entities.Context
                 .HasIndex(sr => new { sr.GameId, sr.Placement })
                 .IsUnique();
 
-            /* =========================
-               TOURNAMENT FLOW
-               ========================= */
             modelBuilder.Entity<TournamentStage>()
                 .HasIndex(ts => new { ts.TournamentId, ts.StageOrder })
                 .IsUnique();
@@ -96,9 +84,6 @@ namespace DAL.Entities.Context
                 .HasIndex(sgt => new { sgt.StageGroupId, sgt.TeamId })
                 .IsUnique();
 
-            /* =========================
-               MATCH CONSTRAINTS
-               ========================= */
             modelBuilder.Entity<Match>()
                 .HasIndex(m => new { m.StageGroupId, m.MatchNumber })
                 .IsUnique();
@@ -111,9 +96,6 @@ namespace DAL.Entities.Context
                 .HasIndex(mps => new { mps.MatchTeamResultId, mps.PlayerId })
                 .IsUnique();
 
-            /* =========================
-               QUALIFICATION MAP
-               ========================= */
             modelBuilder.Entity<QualificationMap>()
                 .HasIndex(q => new { q.FromStageGroupId, q.TeamId })
                 .IsUnique();

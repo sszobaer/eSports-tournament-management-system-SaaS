@@ -51,10 +51,5 @@ namespace BLL.Services
             var data = await factory.GameData().Get(id);
             return MapperConfig.GetMapper().Map<GameDTO>(data);
         }
-
-
-
-
-
     }
 }

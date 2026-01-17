@@ -34,15 +34,35 @@ namespace BLL.Services
             return await factory.RoleData().Delete(id);
         }
 
+        //public async Task<bool> Update(RoleDTO role, int id)
+        //{
+        //    Role data = MapperConfig.GetMapper().Map<Role>(role);
+        //    return await factory.RoleData().Update(data, id);
+        //}
+
         public async Task<bool> Update(RoleDTO role, int id)
         {
-            Role data = MapperConfig.GetMapper().Map<Role>(role);
-            return await factory.RoleData().Update(data, id);
+            var entity = await factory.RoleData().Get(id);
+            if (entity == null) return false;
+
+            MapperConfig.GetMapper().Map(role, entity); 
+
+            entity.UpdatedAt = DateTime.UtcNow;
+
+            return await factory.SaveAsync() > 0;
         }
+
+
 
         public async Task<RoleDTO> GetById(int id)
         {
             var data = await factory.RoleData().Get(id);
+            return MapperConfig.GetMapper().Map<RoleDTO>(data);
+        }
+
+        public async Task<RoleDTO> GetByName(string name)
+        {
+            var data = await factory.RoleData().GetByName(name);
             return MapperConfig.GetMapper().Map<RoleDTO>(data);
         }
     }

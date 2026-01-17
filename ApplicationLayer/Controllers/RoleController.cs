@@ -37,19 +37,17 @@ namespace ApplicationLayer.Controllers
             }
         }
 
-        [HttpPut("update")]
-        public async Task<IActionResult> Update(RoleDTO role)
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] RoleDTO role)
         {
-            var data = await _roleService.Update(role, role.Id);
-            if(data)
-            {
-                return Ok(new { message = "Role updated successfully" });
-            }
-            else
-            {
-                return BadRequest(new { message = "Role update failed" });
-            }
+            var data = await _roleService.Update(role, id);
+
+            if (data) return Ok(new { message = "Role updated successfully" });
+            
+            return BadRequest(new { message = "Role update failed" });
         }
+
 
         [HttpDelete()]
         public async Task<IActionResult> Delete(int id)
@@ -68,6 +66,12 @@ namespace ApplicationLayer.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var data = await _roleService.GetById(id);
+            return Ok(data);
+        }
+        [HttpGet("name/{name}")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            var data = await _roleService.GetByName(name);
             return Ok(data);
         }
     }

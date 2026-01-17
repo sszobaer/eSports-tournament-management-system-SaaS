@@ -2,6 +2,7 @@
 using DAL.Entities.Models;
 using DAL.Interfaces;
 using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,6 +28,10 @@ namespace DAL
         public IBase<Team, int, bool> TeamData()
         {
             return new TeamRepo(db);
+        }
+        public async Task<int> SaveAsync()
+        {
+            return await db.SaveChangesAsync();
         }
         public IPlayer PlayerData()
         {
