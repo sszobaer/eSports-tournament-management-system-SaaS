@@ -52,18 +52,16 @@ namespace DAL.Repositories
         {
             var currentEntity = await Get(id);
             if (currentEntity == null) return false;
-            
-            foreach(var property in typeof(TEntity).GetProperties())
-            {
-                if (property.Name.Equals("Id")) continue;
-                var newValue= property.GetValue(entity);
-                property.SetValue(currentEntity, newValue);
-            }
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(entity);
+
             if (currentEntity is BaseEntity baseEntity)
             {
                 baseEntity.UpdatedAt = DateTime.UtcNow;
             }
+
             return await _context.SaveChangesAsync() > 0;
         }
+
     }
 }

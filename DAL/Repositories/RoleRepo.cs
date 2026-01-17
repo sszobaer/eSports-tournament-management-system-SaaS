@@ -2,7 +2,6 @@
 using DAL.Entities.Models;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -22,7 +21,7 @@ namespace DAL.Repositories
         {
             var data = await _context.Roles
                                  .AsNoTracking()
-                                 .FirstOrDefaultAsync(r => r.Name == roleName);
+                                 .FirstOrDefaultAsync(r => r.Name.ToUpper() == roleName.ToUpper());
             if (data == null) throw new KeyNotFoundException($"Role with name '{roleName}' not found.");
             
             return data;
