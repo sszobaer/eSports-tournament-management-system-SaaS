@@ -30,10 +30,13 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<GameService>();
 builder.Services.AddScoped<TeamService>();
 builder.Services.AddScoped<RoleService>();
+builder.Services.AddScoped<OrganizationService>();
 
 // DAL repositories
 builder.Services.AddScoped<GameRepo>();
 builder.Services.AddScoped<TeamRepo>();
+builder.Services.AddScoped<RoleRepo>();
+builder.Services.AddScoped<OrganizationRepo>();
 builder.Services.AddScoped<DataAccessFactory>();
 
 // DbContext (CORRECT)

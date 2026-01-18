@@ -16,6 +16,11 @@ namespace DAL
         {
             this.db = db;
         }
+
+        public IBase<Organization, int, bool> OrgData()
+        {
+            return new OrganizationRepo(db);
+        }
         public IRole RoleData()
         {
             return new RoleRepo(db);
