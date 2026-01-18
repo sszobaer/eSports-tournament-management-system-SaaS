@@ -38,5 +38,10 @@ namespace DAL
         {
             return await db.SaveChangesAsync();
         }
+        public IPlayer PlayerData()
+        {
+            return new PlayerRepo(db);
+        }
+      
     }
 }
