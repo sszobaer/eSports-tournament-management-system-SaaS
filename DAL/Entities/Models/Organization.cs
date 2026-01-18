@@ -13,7 +13,7 @@ namespace DAL.Entities.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        public ICollection<OrganizationUser> Users { get; set; }
+        public virtual List<OrganizationUser> Users { get; set; }
         public Organization() { 
             Users = new List<OrganizationUser>();
         }

@@ -22,7 +22,7 @@ namespace DAL.Entities.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        public ICollection<UserRole> UserRoles { get; set; }
-        public ICollection<OrganizationUser> Organizations { get; set; }
+        public virtual List<UserRole> UserRoles { get; set; }
+        public virtual List<OrganizationUser> Organizations { get; set; }
     }
 }

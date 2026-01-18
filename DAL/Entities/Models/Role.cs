@@ -10,6 +10,6 @@ namespace DAL.Entities.Models
         [Required, MaxLength(25)]
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public virtual List<UserRole> UserRoles { get; set; }
     }
 }
