@@ -36,13 +36,13 @@ namespace ApplicationLayer.Controllers
 
        
 
-        [HttpPost("update/{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(GameDTO game,int id)
         {
             var data =await _gameService.Update(game, id);
             return Ok(data);
         }
-        [HttpPost("delete/{id}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var data =await _gameService.Delete(id);

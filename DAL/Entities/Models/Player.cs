@@ -17,6 +17,8 @@ namespace DAL.Entities.Models
 
         [Required, MaxLength(100)]
         public string InGameName { get; set; }
+        [Required, EmailAddress]
+        public string PlayersEmail { get; set; }
     }
 
 }

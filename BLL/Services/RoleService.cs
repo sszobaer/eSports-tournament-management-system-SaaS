@@ -34,12 +34,6 @@ namespace BLL.Services
             return await factory.RoleData().Delete(id);
         }
 
-        //public async Task<bool> Update(RoleDTO role, int id)
-        //{
-        //    Role data = MapperConfig.GetMapper().Map<Role>(role);
-        //    return await factory.RoleData().Update(data, id);
-        //}
-
         public async Task<bool> Update(RoleDTO role, int id)
         {
             var entity = await factory.RoleData().Get(id);

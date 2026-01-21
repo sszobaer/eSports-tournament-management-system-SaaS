@@ -40,15 +40,8 @@ namespace BLL.Services
             if (!created) {
                 return ServiceResponse<PlayerDTO>.FailureResponse("Failed to create player");
             }
-            
-            
-
-
+           
             return ServiceResponse<PlayerDTO>.SuccessResponse(player, "Player created successfully");
-
-
-
-
 
         }
     }

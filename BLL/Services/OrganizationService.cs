@@ -19,18 +19,11 @@ namespace BLL.Services
 
         public async Task<Organization> Create(OrganizationCreateDTO dto)
         {
-            string logoUrl = null;
-
-            if (dto.LogoUrl != null)
-            {
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.LogoUrl.FileName)}";
-                var path = Path.Combine("D:/eSports-tournament-management-system-SaaS/ApplicationLayer/wwwroot/uploads/org-logos", fileName);
-
-                using var stream = new FileStream(path, FileMode.Create);
-                await dto.LogoUrl.CopyToAsync(stream);
-
-                logoUrl = $"/uploads/org-logos/{fileName}";
-            }
+            var logoUrl = await FileUploadHelper.SaveOrganizationLogoAsync(
+                dto.LogoUrl,
+                "D:/eSports-tournament-management-system-SaaS/ApplicationLayer/wwwroot",
+                "uploads/org-logos"
+            );
 
             var org = new Organization
             {
@@ -40,10 +33,45 @@ namespace BLL.Services
             };
 
             await _factory.OrgData().Create(org);
-
             return org;
         }
 
 
+        public async Task<List<OrganizationGetDTO>> GetAll()
+        {
+            var data = await _factory.OrgData().GetAll();
+            return MapperConfig.GetMapper().Map<List<OrganizationGetDTO>>(data);
+        }
+
+        public async Task<OrganizationGetDTO> GetById(int id)
+        {
+            var data = await _factory.OrgData().Get(id);
+            return MapperConfig.GetMapper().Map<OrganizationGetDTO>(data);
+        }
+        public async Task<bool> Delete(int id)
+        {
+            return await _factory.OrgData().Delete(id);
+        }
+        public async Task<bool> Update(int id, OrganizationUpdateDTO org)
+        {
+            var existingOrg = await _factory.OrgData().Get(id);
+            if (existingOrg == null)
+                return false;
+
+            var newLogoUrl = await FileUploadHelper.SaveOrganizationLogoAsync(
+                org.LogoUrl,
+                "D:/eSports-tournament-management-system-SaaS/ApplicationLayer/wwwroot",
+                "uploads/org-logos"
+            );
+
+            MapperConfig.GetMapper().Map(org, existingOrg);
+
+            if (newLogoUrl != null)
+                existingOrg.LogoUrl = newLogoUrl;
+
+            existingOrg.UpdatedAt = DateTime.UtcNow;
+
+            return await _factory.SaveAsync() > 0;
+        }
     }
 }

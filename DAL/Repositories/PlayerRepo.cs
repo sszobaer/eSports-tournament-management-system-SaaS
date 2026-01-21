@@ -10,7 +10,7 @@ namespace DAL.Repositories
 {
     public class PlayerRepo:BaseRepo<Player,int>,IPlayer
     {
-        public PlayerRepo(UMSContext context) : base(context)
+        public PlayerRepo(ETMSContext context) : base(context)
         {
         }
 
