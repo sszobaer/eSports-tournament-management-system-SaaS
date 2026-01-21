@@ -34,10 +34,34 @@ namespace DAL
         {
             return new TeamRepo(db);
         }
+        public IAuth AuthData()
+        {
+            return new AuthRepo(db);
+        }
+        public IOrgUser OrgUserData()
+        {
+            return new OrganizationUserRepo(db);
+        }
+
         public async Task<int> SaveAsync()
         {
             return await db.SaveChangesAsync();
         }
+        public IEmail EmailData()
+        {
+            return new EmailRepo();
+        }
+        public IMatch MatchData()
+        {
+            return new MatchRepo(db);
+        }
+
+        public IMatchResult MatchTeamResultData()
+        {
+            return new MatchResultRepo(db);
+        }
+
+
         public IPlayer PlayerData()
         {
             return new PlayerRepo(db);

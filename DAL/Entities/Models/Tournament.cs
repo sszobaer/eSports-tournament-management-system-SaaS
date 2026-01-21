@@ -19,7 +19,6 @@ namespace DAL.Entities.Models
         [Required, MaxLength(200)]
         public string Name { get; set; }
 
-        [Required]
         public TournamentStatus Status { get; set; }
 
         public ICollection<TournamentStage> Stages { get; set; }

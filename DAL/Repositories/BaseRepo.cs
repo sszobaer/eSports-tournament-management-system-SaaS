@@ -55,7 +55,7 @@ namespace DAL.Repositories
 
             _context.Entry(currentEntity).CurrentValues.SetValues(entity);
 
-            if (currentEntity is BaseEntity baseEntity)
+            if (currentEntity is BaseEntity baseEntity) //curr.Name = Base.Name
             {
                 baseEntity.UpdatedAt = DateTime.UtcNow;
             }

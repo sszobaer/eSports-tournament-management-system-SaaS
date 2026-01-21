@@ -32,6 +32,8 @@ builder.Services.AddScoped<TeamService>();
 builder.Services.AddScoped<PlayerService>();
 builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<OrganizationService>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<MatchService>();
 
 // DAL repositories
 builder.Services.AddScoped<GameRepo>();
@@ -39,6 +41,9 @@ builder.Services.AddScoped<TeamRepo>();
 builder.Services.AddScoped<RoleRepo>();
 builder.Services.AddScoped<OrganizationRepo>();
 builder.Services.AddScoped<PlayerRepo>();
+builder.Services.AddScoped<AuthRepo>();
+builder.Services.AddScoped<MatchRepo>();
+builder.Services.AddScoped<MatchResultRepo>();
 
 
 builder.Services.AddScoped<DataAccessFactory>();
